@@ -1,16 +1,18 @@
 #ifndef GROUPING_PARSER
 #define GROUPING_PARSER
 
-/* Grouping pair parser written for Project 1 of COSC311 at Eastern Michigan University.
-   Date written: 1/9/2013
-   Author (Student): Joseph J. Bleau, III
+/*	Grouping pair parser written for Project 1 of COSC311 at Eastern Michigan University.
+	Date written: 1/9/2013
+	Author (Student): Joseph J. Bleau, III
 
-   Short description: This class will take, after instantialized, will take a string of characters through
-                      its parse member and determine whether or not the string of characters is a set of valid
-					  and appropriately matching groups. The currently pre-set valid groupings are [], (), {}, and <>
+	Short description: This class will take, after instantialized, will take a string of 
+	characters through its parse member and determine whether or not the string of characters 
+	is a set of valid and appropriately matching groups. The currently pre-set valid 
+	groupings are [], (), {}, and <>
 
-					  The design is flexible and allows for anyone with access to the class code to specify their own groupings,
-					  with the possibility to expand this into the classes public API. This was out of the scope of the project.
+	The design is flexible and allows for anyone with access to the class code to specify their 
+	own groupings, with the possibility to expand this into the classes public API. This was out 
+	of the scope of the project.
 */
 
 #include <map>

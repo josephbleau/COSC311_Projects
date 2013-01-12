@@ -1,41 +1,38 @@
-/* Project 1 for COSC 311 (Advanced Datastructures & Algorithms) at Eastern Michigan University
-   Written on: 1/9/2013
-   Author (Student): Joseph J. Bleau, III
+/*	Project 1 for COSC 311 (Advanced Datastructures & Algorithms) at Eastern Michigan University
+	Written on: 1/9/2013
+	Author (Student): Joseph J. Bleau, III
 
-   Purpose: The purpose of this program is to generate random characters and writing them to file for the purpose of
-            supplying them to the other program in this project (grp_parser.exe). 
+	Purpose: The purpose of this program is to generate random characters and writing them 
+		to file for the purpose of supplying them to the other program in this project 
+		(grp_parser.exe). 
 			
-			This program requires parameters # of groups, result, and filename.
+		This program requires parameters # of groups, result, and filename.
 			
-			The number of groups is simply how many pairs there will be. 
-			The result can be valid, unmatched_right, unmatched_left, and invalid_grouping.
+		The number of groups is simply how many pairs there will be. 
+		The result can be valid, unmatched_right, unmatched_left, and invalid_grouping.
 
-			While still containing randomness, this program is designed to generate a text file which will invoke
-			the appropriate response from our main parser.
+		While still containing randomness, this program is designed to generate a 
+		text file which will invoke the appropriate response from our main parser.
 
-			And finally, the filename is the name of the file it will output to.
+		And finally, the filename is the name of the file it will output to.
 
-   Implementation:
-			Algorithm for generating random valid pairs:
-				Select a random location for a new pair.
-				Randomly insert the pair.
-				Repeat this process for the number of groups desired.
+	Implementation:
+		Algorithm for generating random valid pairs:
+			Select a random location for a new pair.
+			Randomly insert the pair.
+			Repeat this process for the number of groups desired.
 
-			Algorithm for generating invalid grouping:
-				Run algorithm for generating random valid pairs.
-				Randomly substitute a symbol for another of its orientation.
+		Algorithm for generating invalid grouping:
+			Run algorithm for generating random valid pairs.
+			Randomly substitute a symbol for another of its orientation.
 
-			Algorithm for generating unmatched left member:
-				Run algorithm for generating random valid pairs.
-				Insert right-side symbol randomly.
-
-			Algorithm for generating unmatched right member:
-				Run algorithm for generating random valid pairs.
-				Insert left-side symbol randomly.
-
-	Note: No real design decisions made during the creation of this program aside from vague notions, 
-	      not really seen as an important application, but just a testing tool for 
-		  the grp_parser. Code is notably messier than the other program. :-)
+		Algorithm for generating unmatched left member:
+			Run algorithm for generating random valid pairs.
+			Insert right-side symbol randomly.
+			
+		Algorithm for generating unmatched right member:
+			Run algorithm for generating random valid pairs.
+			Insert left-side symbol randomly.
 
 	Main returns: 
 		0 on success

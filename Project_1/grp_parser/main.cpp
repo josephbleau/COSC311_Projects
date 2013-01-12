@@ -3,7 +3,7 @@
    Author (Student): Joseph J. Bleau, III
 
    Purpose: This application accepts a single parameter (file-name.) It reads the file into memory and
-            parses its characters. It does so with the intention of discovering whether or not the file
+			parses its characters. It does so with the intention of discovering whether or not the file
 			contains valid character group parings. Such valid pairs would be (), {}, [], <>, by default.
 			These pairs may also be nested, for example ((<<[]>>)) would be a valid set of groups.
 

@@ -1,14 +1,14 @@
 #ifndef STACK_H
 #define STACK_H
 
-/* Stack implementation written for Project 1 of COSC311 at Eastern Michigan University
-   Date Written: 1/9/2013
-   Author (Student): Joseph J. Bleau, III 
+/*	Stack implementation written for Project 1 of COSC311 at Eastern Michigan University
+	Date Written: 1/9/2013
+	Author (Student): Joseph J. Bleau, III 
 
-   Short description: A standard stack data structure, implements empty, pop, push, and top. We were unallowed ot use
-                      the standard library stack implementation for the purposes of demonstrating our programming
-					  abilities during this project. 
-					  
+	Short description: A standard stack data structure, implements empty, pop, push, 
+	and top. We were unallowed ot use the standard library stack implementation for 
+	the purposes of demonstrating our programming abilities during this project. 
+				  
 */
 
 namespace EMU {
