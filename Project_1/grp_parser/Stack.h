@@ -26,8 +26,7 @@ public:
 template <class T>
 class Stack {
 private:
-	SinglyNode<T>* mHead;
-	SinglyNode<T>* mTail;
+	SinglyNode<T>* mTop;
 
 	void clear(SinglyNode<T>* n = NULL);
 
@@ -44,71 +43,55 @@ public:
 
 template <class T>
 Stack<T>::Stack() {
-	mHead = NULL;
-	mTail = NULL;
+	mTop = NULL;
 }
 
 template <class T>
 Stack<T>::~Stack() {
-	clear(mHead);
+	clear(mTop);
+	mTop = NULL;
 }
 
 template <class T>
 void Stack<T>::clear(SinglyNode<T>* n = NULL){
-	if(mHead == NULL)
-		n = mHead;
-	if(n == NULL)
-		return;
-
-	if(n->next) clear(n->next);
-	
-	delete n;
+	while(mTop) {
+		SinglyNode<T>* old_top = mTop;
+		mTop = mTop->next;
+		delete old_top;
+	}
 }
 
 template <class T>
 bool Stack<T>::empty() {
-	return (mHead == NULL);
+	return (mTop == NULL);
 }
 
 template <class T>
 void Stack<T>::pop() {
-	if(mHead == NULL)
+	if(mTop == NULL)
 		return;
 
-	if(mHead->next == NULL){
-		delete mHead;
-		mHead = NULL;
-		mTail = NULL;
-		return;
-	}
-
-	SinglyNode<T>* ptr1 = mHead;
-	SinglyNode<T>* ptr2 = mHead->next;
-
-	while(ptr2->next){ ptr2 = ptr2->next; ptr1 = ptr1->next; }
-	mTail = ptr1;
-	ptr1->next = NULL;
-	delete ptr2;
+	SinglyNode<T>* old_top = mTop; 
+	mTop = mTop->next;
+	delete old_top;
 }
 
 template <class T>
 void Stack<T>::push(T value) {
 	SinglyNode<T>* n = new SinglyNode<T>(value);
 	
-	mTail = n;
-
-	if(mHead == NULL)
-		mHead = n;
-	else {
-		SinglyNode<T>* ptr = mHead;
-		while(ptr->next){ ptr = ptr->next; }
-		ptr->next = n;
+	if(mTop == NULL) {
+		mTop = n;
+		return;
 	}
+
+	n->next = mTop;
+	mTop = n;
 }
 
 template <class T>
 T& Stack<T>::top() {
-	return mTail->data;
+	return mTop->data;
 }
 
 };
