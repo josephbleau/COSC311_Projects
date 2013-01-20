@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.EmptyStackException;
 
-import com.josephbleau.cosc311.project1.parser.GroupParser.GroupParserResult;
+import com.josephbleau.collections.Stack;
+import com.josephbleau.utilities.parsing.GroupParser;
+import com.josephbleau.utilities.parsing.GroupParser.GroupParserResult;
 
 public class Application {
 	
