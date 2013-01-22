@@ -111,7 +111,7 @@ public class RandomPairSequenceGenerator {
 		
 		if(type == "valid") {
 			/* No other work required. */
-		} else if(type == "invalid_grouping") {
+		} else if(type.equals("invalid_grouping")) {
 			/* Pick a random character and replace it with an equivalent-handed
 			 * character that isn't itself, e.g.: '(' becomes '[' */
 			
@@ -121,7 +121,7 @@ public class RandomPairSequenceGenerator {
 			else 
 				pairs = swapSingle(pairs.charAt(0)) + pairs.substring(1);
 			
-		} else if(type == "unmatched_left") {
+		} else if(type.equals("unmatched_left")) {
 			/* Iterate through the pairs and discover how many points in the string result in
 			 * an empty stack, these are our points for causing an unmatched left member. */
 			
@@ -130,7 +130,7 @@ public class RandomPairSequenceGenerator {
 			insert = empty_points.get(insert);
 			
 			pairs = pairs.substring(0, insert) + parser.randomLeftHand() + pairs.substring(insert);
-		} else if(type == "unmatched_right") {
+		} else if(type.equals("unmatched_right")) {
 			/* Same as unmatched_left, except we're going to insert a right-handed
 			 * character. */
 			
