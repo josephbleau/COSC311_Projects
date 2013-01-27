@@ -86,6 +86,11 @@ public class SimulationGUI extends javax.swing.JFrame {
 
         resetButton.setText("Reset");
         resetButton.setFocusable(false);
+        resetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetButtonActionPerformed(evt);
+            }
+        });
 
         simResultLabel.setText("<html><h2>Simulation Results:</h2></html>");
 
@@ -241,6 +246,14 @@ public class SimulationGUI extends javax.swing.JFrame {
         expectedNTextField.setText(expectedN.toString());
         resultsNTextField.setText(resultN.toString());
     }//GEN-LAST:event_runButtonActionPerformed
+
+    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
+        lambdaTextField.setText("");
+        TTextField.setText(""); 
+        resultsNTextField.setText("");
+        expectedNTextField.setText("");
+        totalTicksTextField.setText("");
+    }//GEN-LAST:event_resetButtonActionPerformed
 
     /**
      * @param args the command line arguments
