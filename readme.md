@@ -1,6 +1,6 @@
 <h1> Computer Science 311 (Datastructures & Algorithms) </h1>
 <h3> Info </h3>
-<p> This repository is for my completed project assignments. All datastructure implementations must be original and usage of the pre-existing Java containers is not allowed for these projects. <br><b> Author:</b> Joseph Bleau<br><b>Email:</b> jbleau@gmail.com
+<p> This repository is for my completed project assignments. All datastructure implementations must be original and usage of the pre-existing Java containers is not allowed for these projects. <br><br><b> Author:</b> Joseph Bleau<br><b>Email:</b> jbleau@gmail.com
 <h3> Project 1 - Stacks </h3>
 <p> The purpose of this project was to learn the stack datastructure, and emply it in a real application.
 The application chosen was a text parser for the purpose of matching brace characters (parens, square brackets, angle brackets, etc.) The required language for the project was Java, but I wrote two implementations. One in C++ and one in Java.
