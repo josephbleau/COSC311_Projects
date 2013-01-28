@@ -30,6 +30,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="resetButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="saveGraphButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="runButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -135,6 +137,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="runButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="resetButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="saveGraphButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -245,8 +248,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;The more precision you need, &lt;br&gt; the higher your ticks should be.&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;The more ticks you run for, &lt;br&gt; the higher your accuracy will be.&lt;/html&gt;"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="saveGraphButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Save Graph"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveGraphButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

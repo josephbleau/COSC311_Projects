@@ -1,15 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.josephbleau.projects;
 
+import com.josephbleau.collections.Pair;
 import com.josephbleau.collections.Queue;
+import java.util.ArrayList;
 
-/**
- *
- * @author Joey
- */
 public class LittleSimulation {
     private double N;
     private double lambda;
@@ -17,12 +11,14 @@ public class LittleSimulation {
     
     private int until_tick;  
     
+    private ArrayList<Pair<Integer, Double>> dataset;
+    
     public LittleSimulation(double lambda, double T, int until_tick) {
         this.lambda = lambda;
         this.T = T;
         this.N = 0;
-        
         this.until_tick = until_tick;
+        this.dataset = new ArrayList<>();
     }
     
     /* Accessors & Mutators */
@@ -58,6 +54,9 @@ public class LittleSimulation {
     }
     public int getUntilTick() {
         return this.until_tick;
+    }
+    public ArrayList<Pair<Integer,Double>> getDataset() {
+        return this.dataset;
     }
     
     /* Returns a Poisson distributed random value. */
@@ -102,10 +101,11 @@ public class LittleSimulation {
                 }
 
                 total_queue_sizes += in_queue;
+                Double present_n = (double)(total_queue_sizes / tick);
+                this.dataset.add(new Pair<Integer, Double>(tick, present_n));
         }
 	
         this.N = (double)(total_queue_sizes / tick);
-        System.out.println(this.N);
         return this.N;
     }
 }

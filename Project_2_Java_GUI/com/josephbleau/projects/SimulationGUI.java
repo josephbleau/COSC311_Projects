@@ -1,15 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.josephbleau.projects;
 
-/**
- *
- * @author Joey
- */
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.jfree.chart.ChartUtilities;
+
 public class SimulationGUI extends javax.swing.JFrame {
     private LittleSimulation simulation;
+    private SimulationGraph chart;
     
     /**
      * Creates new form SimulationGUI
@@ -17,6 +16,7 @@ public class SimulationGUI extends javax.swing.JFrame {
     public SimulationGUI() {
         initComponents();
         simulation = new LittleSimulation(0.5, 5.0, 1000);
+        chart = null;
     }
     
     /**
@@ -48,6 +48,7 @@ public class SimulationGUI extends javax.swing.JFrame {
         resultsNLabel = new javax.swing.JLabel();
         resultsNTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        saveGraphButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Little's Law Simulation");
@@ -110,7 +111,15 @@ public class SimulationGUI extends javax.swing.JFrame {
         resultsNTextField.setEditable(false);
         resultsNTextField.setFocusable(false);
 
-        jLabel1.setText("<html>The more precision you need, <br> the higher your ticks should be.</html>");
+        jLabel1.setText("<html>The more ticks you run for, <br> the higher your accuracy will be.</html>");
+
+        saveGraphButton.setText("Save Graph");
+        saveGraphButton.setEnabled(false);
+        saveGraphButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveGraphButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,6 +131,8 @@ public class SimulationGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(resetButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(saveGraphButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(runButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -209,7 +220,8 @@ public class SimulationGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(runButton)
-                    .addComponent(resetButton))
+                    .addComponent(resetButton)
+                    .addComponent(saveGraphButton))
                 .addContainerGap())
         );
 
@@ -234,10 +246,10 @@ public class SimulationGUI extends javax.swing.JFrame {
             lambda = Double.parseDouble(lambdaTextField.getText());
             T = Double.parseDouble(TTextField.getText());
             
-            simulation = new LittleSimulation(lambda, T, total_ticks);
-            simulation.runSimulation();
+            this.simulation = new LittleSimulation(lambda, T, total_ticks);
+            this.simulation.runSimulation();
+            this.chart = new SimulationGraph(this.simulation.getDataset());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return;
         }
         
@@ -245,6 +257,7 @@ public class SimulationGUI extends javax.swing.JFrame {
         Double resultN = simulation.getN();
         expectedNTextField.setText(expectedN.toString());
         resultsNTextField.setText(resultN.toString());
+        saveGraphButton.setEnabled(true);
     }//GEN-LAST:event_runButtonActionPerformed
 
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
@@ -253,7 +266,23 @@ public class SimulationGUI extends javax.swing.JFrame {
         resultsNTextField.setText("");
         expectedNTextField.setText("");
         totalTicksTextField.setText("");
+        simulation = null;
+        saveGraphButton.setEnabled(false);
     }//GEN-LAST:event_resetButtonActionPerformed
+
+    private void saveGraphButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGraphButtonActionPerformed
+        if(this.chart != null) {
+            try {
+                String filename = "t" + simulation.getT() + "_l" + 
+                                  simulation.getLambda() + "_tk" +
+                                  totalTicksTextField.getText()  +
+                                  ".jpg";
+                
+                ChartUtilities.saveChartAsJPEG(new File(filename), chart.getChart(), 800, 400);
+            } catch (IOException ex) {
+            }
+        }
+    }//GEN-LAST:event_saveGraphButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,6 +334,7 @@ public class SimulationGUI extends javax.swing.JFrame {
     private javax.swing.JLabel resultsNLabel;
     private javax.swing.JTextField resultsNTextField;
     private javax.swing.JButton runButton;
+    private javax.swing.JButton saveGraphButton;
     private javax.swing.JLabel simResultLabel;
     private javax.swing.JLabel theoremLabel;
     private javax.swing.JLabel theoremParamLabel;
