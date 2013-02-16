@@ -1,8 +1,10 @@
 package com.josephbleau.projects;
 
 import com.josephbleau.collections.Pair;
+import com.josephbleau.collections.PriorityQueue;
 import com.josephbleau.collections.Queue;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class LittleSimulation {
     private double N;
@@ -74,32 +76,54 @@ public class LittleSimulation {
     }
 
     public double runSimulation() {
-        Queue<Integer> queue = new Queue<Integer>();
+        return runSimulation(0);
+    }
+    
+    public double runSimulation(int vary) {
+        PriorityQueue<Integer> queue = new PriorityQueue<Integer>();
 
         /* Simulation parameters */
         int tick = 0;
-        int until_tick = this.until_tick;
-
+        
         int in_queue = 0;
         double total_queue_sizes = 0;
 
-        while(tick++ < until_tick) {
-                int new_inserts = getPoisson(this.lambda);
-
-                /* New elements entering the queue. */
-                for(int i = 0; i < new_inserts; i++) {
-                        queue.offer(tick);	
-                        in_queue++;
+        while(tick++ < this.until_tick) {              
+                int new_inserts = (int) this.lambda;
+                int current_T = (int) this.T;
+                
+                if(vary == 1){
+                    new_inserts = getPoisson(this.lambda);
                 }
-
-                /* Remove elements from the front who
-                 * will have been serviced by now. */
-                while(queue.peek() != null &&
-                          tick - queue.peek() >= this.T ) {
-                        queue.remove();
+                else if(vary == 2) {
+                    current_T = getPoisson(this.T);
+                }
+                                
+                try {
+                    /* If current waiting time is zero then there's
+                     * no reason to insert these elements, as they
+                     * are immediately served upon entering the queue.
+                     */
+                    if(current_T != 0){
+                        /* New elements entering the queue. */
+                        for(int i = 0; i < new_inserts; i++) {
+                            queue.offer(tick+current_T, tick+current_T);	
+                                in_queue++;
+                        }
+                    }
+                    
+                    while(queue.peek() <= tick) {
+                        queue.poll();
                         in_queue--;
+                    }
+                }
+                catch (NoSuchElementException e)
+                {
+                    System.out.println(e.getMessage());
                 }
 
+                System.out.println(in_queue);
+                
                 total_queue_sizes += in_queue;
                 Double present_n = (double)(total_queue_sizes / tick);
                 this.dataset.add(new Pair<Integer, Double>(tick, present_n));

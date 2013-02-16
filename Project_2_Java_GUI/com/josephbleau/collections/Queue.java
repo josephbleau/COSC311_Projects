@@ -19,6 +19,10 @@ public class Queue<T> {
 		}
 	}
 	
+        public boolean isEmpty() {
+            return (mHead == null);
+        }
+        
 	public boolean offer(T d) {
 		Node<T> n = new Node<T>(d);
 		
