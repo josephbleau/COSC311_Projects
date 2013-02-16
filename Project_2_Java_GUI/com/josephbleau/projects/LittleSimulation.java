@@ -121,8 +121,6 @@ public class LittleSimulation {
                 {
                     System.out.println(e.getMessage());
                 }
-
-                System.out.println(in_queue);
                 
                 total_queue_sizes += in_queue;
                 Double present_n = (double)(total_queue_sizes / tick);
